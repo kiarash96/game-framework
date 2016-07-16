@@ -10,7 +10,7 @@ public class Game {
     JFrame window;
     GamePanel panel;
 
-    public void run() {
+    public void run() throws InterruptedException {
         panel = new GamePanel();
 
         window = new JFrame("My Game");
@@ -24,6 +24,10 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        new Game().run();
+        try {
+            new Game().run();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
 
         eventQueue = new ConcurrentLinkedQueue<>();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK
-                    | AWTEvent.KEY_EVENT_MASK);
+                | AWTEvent.KEY_EVENT_MASK);
 
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setFocusable(true);
@@ -39,11 +39,18 @@ public class GamePanel extends JPanel {
         eventQueue.add(e);
     }
 
-    public void mainLoop() {
+    public void mainLoop() throws InterruptedException {
         while (running) {
+            long start = System.nanoTime();
+
             processInput();
             update();
             render();
+
+            long elapsed = System.nanoTime() - start;
+            long wait = (long) (1000.0 / FPS - (double) (elapsed) / (1000 * 1000));
+            if (wait > 0.0)
+                Thread.sleep(wait);
         }
     }
 
