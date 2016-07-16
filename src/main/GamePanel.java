@@ -1,3 +1,5 @@
+package main;
+
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Image;
