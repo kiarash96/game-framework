@@ -1,5 +1,7 @@
 package main;
 
+import scene.SceneManager;
+
 import javax.swing.JPanel;
 import java.awt.AWTEvent;
 import java.awt.Dimension;
@@ -19,6 +21,8 @@ public class GamePanel extends JPanel {
     Queue<AWTEvent> eventQueue;
     boolean running;
 
+    SceneManager sm;
+
     public GamePanel() {
         super();
 
@@ -32,6 +36,8 @@ public class GamePanel extends JPanel {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setFocusable(true);
         requestFocus();
+
+        sm = new SceneManager();
     }
 
     @Override
