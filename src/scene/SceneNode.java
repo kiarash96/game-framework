@@ -12,14 +12,15 @@ public abstract class SceneNode {
     private SceneManager sm;
 
     // relative to parent
-    protected Vector2d position, rotation, scale;
+    protected Vector2d position, scale;
+    protected double rotation;
     protected Vector2d velocity;
 
     protected List<SceneNode> children;
 
     SceneNode() {
         position = new Vector2d();
-        rotation = new Vector2d();
+        rotation = 0.0;
         scale = new Vector2d();
         velocity = new Vector2d();
     }
@@ -43,11 +44,11 @@ public abstract class SceneNode {
         this.position = position;
     }
 
-    public Vector2d getRotation() {
+    public double getRotation() {
         return rotation;
     }
 
-    public void setRotation(Vector2d rotation) {
+    public void setRotation(double rotation) {
         this.rotation = rotation;
     }
 
