@@ -21,8 +21,10 @@ public abstract class SceneNode {
     SceneNode() {
         position = new Vector2d();
         rotation = 0.0;
-        scale = new Vector2d();
+        scale = new Vector2d(1.0, 1.0);
         velocity = new Vector2d();
+
+        children = new ArrayList<>();
     }
 
     public void attachChild(SceneNode node) {
