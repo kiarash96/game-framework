@@ -2,6 +2,9 @@ package scene;
 
 import util.Vector2d;
 
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +12,7 @@ import java.util.List;
  */
 public abstract class SceneNode {
 
-    private SceneManager sm;
+    SceneManager sm;
 
     // relative to parent
     protected Vector2d position, scale;
@@ -36,6 +39,20 @@ public abstract class SceneNode {
     public void detachChild(SceneNode node) {
         children.remove(node);
         sm.nodes.remove(node);
+        sm.transformMap.remove(node);
+    }
+
+    public abstract void drawSelf(Graphics2D g);
+
+    public void recursiveUpdateTransform(AffineTransform reference) {
+        AffineTransform transform = (AffineTransform) reference.clone();
+        transform.translate(position.getX(), position.getY());
+        // TODO: rotate around the center
+        transform.rotate(rotation, 0.0, 0.0);
+        transform.scale(scale.getX(), scale.getY());
+
+        sm.transformMap.put(this, transform);
+        children.forEach(child -> child.recursiveUpdateTransform(transform));
     }
 
     public Vector2d getPosition() {

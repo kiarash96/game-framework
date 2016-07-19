@@ -4,7 +4,9 @@ import scene.SceneManager;
 
 import javax.swing.JPanel;
 import java.awt.AWTEvent;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.Queue;
@@ -72,6 +74,15 @@ public class GamePanel extends JPanel {
     }
 
     private void render() {
-        // TODO
+        Graphics2D g = (Graphics2D) buffer.getGraphics();
+
+        // clear the buffer
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
+
+        sm.render(g);
+
+        // draw the buffer on screen
+        this.getGraphics().drawImage(buffer, 0, 0, null);
     }
 }
