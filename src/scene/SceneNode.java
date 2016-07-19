@@ -88,4 +88,12 @@ public abstract class SceneNode {
         this.velocity = velocity;
     }
 
+    public void move(Vector2d v) {
+        position = position.add(v);
+    }
+
+    public void rotate(double theta) {
+        rotation += theta;
+    }
+
 }

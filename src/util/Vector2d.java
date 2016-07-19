@@ -15,6 +15,10 @@ public class Vector2d {
         this.y = y;
     }
 
+    public Vector2d add(Vector2d v) {
+        return new Vector2d(this.x + v.x, this.y + v.y);
+    }
+
     public double getX() {
         return x;
     }
