@@ -40,6 +40,7 @@ public abstract class SceneNode {
         children.remove(node);
         sm.nodes.remove(node);
         sm.transformMap.remove(node);
+        // TODO: remove children from nodes array and transformMap
     }
 
     public abstract void drawSelf(Graphics2D g);
