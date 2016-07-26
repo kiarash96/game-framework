@@ -18,6 +18,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class GamePanel extends JPanel {
     public static final int WIDTH = 1280, HEIGHT = 960;
     public static final int FPS = 60;
+    public static final double DT = (double) 1000 * 1000 * 1000 / FPS; // in nano seconds
 
     Image buffer;
     Queue<AWTEvent> eventQueue;
@@ -48,17 +49,22 @@ public class GamePanel extends JPanel {
     }
 
     public void mainLoop() throws InterruptedException {
+        double timeSinceLastUpdate = 0.0, clock = 0.0;
         while (running) {
-            long start = System.nanoTime();
-
             processInput();
-            update();
-            render();
 
-            long elapsed = System.nanoTime() - start;
-            long wait = (long) (1000.0 / FPS - (double) (elapsed) / (1000 * 1000));
-            if (wait > 0.0)
-                Thread.sleep(wait);
+            double now = System.nanoTime();
+            timeSinceLastUpdate += (clock == 0.0 ? 0.0 : now - clock);
+            clock = now;
+
+            while (timeSinceLastUpdate > DT) {
+                timeSinceLastUpdate -= DT;
+
+                processInput();
+                update(DT / (1000 * 1000 * 1000));
+            }
+
+            render();
         }
     }
 
@@ -69,8 +75,8 @@ public class GamePanel extends JPanel {
         }
     }
 
-    private void update() {
-        // TODO
+    private void update(double dt) {
+        sm.update(dt);
     }
 
     private void render() {

@@ -1,5 +1,7 @@
 package scene;
 
+import scene.Nodes.EmptyNode;
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
@@ -26,6 +28,10 @@ public class SceneManager {
 
     public SceneNode getRoot() {
         return root;
+    }
+
+    public void update(double dt) {
+        root.update(dt);
     }
 
     public void render(Graphics2D g) {

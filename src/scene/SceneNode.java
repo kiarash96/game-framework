@@ -12,7 +12,7 @@ import java.util.List;
  */
 public abstract class SceneNode {
 
-    SceneManager sm;
+    protected SceneManager sm;
 
     // relative to parent
     protected Vector2d position, scale;
@@ -44,6 +44,13 @@ public abstract class SceneNode {
     }
 
     public abstract void drawSelf(Graphics2D g);
+
+    public abstract void updateSelf(double dt);
+
+    public void update(double dt) {
+        updateSelf(dt);
+        children.forEach(node -> node.update(dt));
+    }
 
     public void recursiveUpdateTransform(AffineTransform reference) {
         AffineTransform transform = (AffineTransform) reference.clone();

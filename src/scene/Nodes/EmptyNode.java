@@ -10,4 +10,7 @@ import java.awt.Graphics2D;
 public class EmptyNode extends SceneNode {
     @Override
     public void drawSelf(Graphics2D g) { }
+
+    @Override
+    public void updateSelf(double dt) { }
 }
