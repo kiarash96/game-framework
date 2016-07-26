@@ -1,4 +1,6 @@
-package scene;
+package scene.Nodes;
+
+import scene.SceneNode;
 
 import java.awt.Graphics2D;
 

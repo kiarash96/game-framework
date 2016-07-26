@@ -21,7 +21,7 @@ public abstract class SceneNode {
 
     protected List<SceneNode> children;
 
-    SceneNode() {
+    public SceneNode() {
         position = new Vector2d();
         rotation = 0.0;
         scale = new Vector2d(1.0, 1.0);
