@@ -1,5 +1,7 @@
 package scene;
 
+import command.Category;
+import command.Command;
 import util.Vector2d;
 
 import java.awt.Graphics2D;
@@ -18,6 +20,8 @@ public abstract class SceneNode {
     protected Vector2d position, scale;
     protected double rotation;
     protected Vector2d velocity;
+
+    protected Category category;
 
     protected List<SceneNode> children;
 
@@ -63,6 +67,14 @@ public abstract class SceneNode {
         children.forEach(child -> child.recursiveUpdateTransform(transform));
     }
 
+    public void onCommand(Command command, double dt) {
+        // TODO: Implement multiple categories
+        if (command.getCategory() == this.getCategory())
+            command.getAction().execute(this, dt);
+
+        children.forEach(child -> child.onCommand(command, dt));
+    }
+
     public Vector2d getPosition() {
         return position;
     }
@@ -93,6 +105,14 @@ public abstract class SceneNode {
 
     public void setVelocity(Vector2d velocity) {
         this.velocity = velocity;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public void move(Vector2d v) {

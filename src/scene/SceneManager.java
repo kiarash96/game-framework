@@ -1,5 +1,6 @@
 package scene;
 
+import command.Command;
 import scene.Nodes.EmptyNode;
 
 import java.awt.Graphics2D;
@@ -28,6 +29,10 @@ public class SceneManager {
 
     public SceneNode getRoot() {
         return root;
+    }
+
+    public void onCommand(Command command, double dt) {
+        root.onCommand(command, dt);
     }
 
     public void update(double dt) {
