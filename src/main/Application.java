@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by kiarash on 7/16/16.
  */
-public class Game {
+public class Application {
 
     JFrame window;
     GamePanel panel;
@@ -25,7 +25,7 @@ public class Game {
 
     SceneManager sm;
 
-    Game() {
+    Application() {
         buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
         running = true;
         sm = new SceneManager();
@@ -34,7 +34,7 @@ public class Game {
     public void run() throws InterruptedException {
         panel = new GamePanel(WIDTH, HEIGHT);
 
-        window = new JFrame("My Game");
+        window = new JFrame("My Application");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.add(panel);
         window.pack();

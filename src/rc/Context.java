@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Created by kiarash on 7/18/16.
  */
-public class Resources {
+public class Context {
 
     public enum TextureID {
 
